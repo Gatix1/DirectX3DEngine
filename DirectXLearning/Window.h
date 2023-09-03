@@ -3,6 +3,7 @@
 #include "Exception.h"
 #include "Keyboard.h"
 #include "Mouse.h"
+#include <optional>
 
 #define CHWND_EXCEPT(hr) Window::Exc( __LINE__, __FILE__, hr)
 #define CHWND_LAST_EXCEPT(hr) Window::Exc( __LINE__, __FILE__, GetLastError())
@@ -39,6 +40,7 @@ private:
 	};
 public:
 	void SetTitle(const std::string &title);
+	static std::optional<int> ProcessMessages();
 	Window(int width, int height, const char* name);
 	~Window();
 	Window(const Window&) = delete;

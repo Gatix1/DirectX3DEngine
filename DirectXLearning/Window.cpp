@@ -1,5 +1,6 @@
 #include "Window.h"
 #include <sstream>
+#include <optional>
 #include "resource.h"
 
 // Window Class Stuff
@@ -99,6 +100,21 @@ void Window::SetTitle(const std::string& title)
 	{
 		throw CHWND_LAST_EXCEPT();
 	}
+}
+
+std::optional<int> Window::ProcessMessages()
+{
+	MSG msg;
+	// While queue has messages, remove and dispatch them
+	while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+	{
+		// Check for quit because peekmessage does not signal this via return
+		if (msg.message == WM_QUIT)
+			return msg.wParam;
+		DispatchMessage(&msg);
+	}
+	// Return empty optional when not quitting app
+	return {};
 }
 
 LRESULT WINAPI Window::HandleMsgThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
