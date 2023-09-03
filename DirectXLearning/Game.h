@@ -6,10 +6,25 @@ class Game
 {
 public:
 	Game();
-	int Initialize();
+	int Initialize()
+	{
+		Start();
+		while (true)
+		{
+			if (const auto ecode = Window::ProcessMessages())
+			{
+				return *ecode;
+			}
+			Update();
+		}
+		Exit();
+	}
+
 private:
+	void Start();
 	void Update();
+	void Exit();
 private:
-	Window wnd;
+	Window window;
 	Timer timer;
 };

@@ -1,23 +1,16 @@
 #include "Game.h"
 
-Game::Game() : wnd(800, 400, "Window!") {}
+Game::Game() : window(800, 400, "Window!") {}
 
-int Game::Initialize()
+void Game::Start()
 {
-	while (true)
-	{
-		if (const auto ecode = Window::ProcessMessages())
-		{
-			return *ecode;
-		}
-		Update();
-	}
+	window.SetTitle("JOPA");
 }
 
 void Game::Update()
 {
-	//const float t = timer.PeekTimeElapsed();
-	//std::ostringstream oss;
-	//oss << "Time elapsed: " << std::setprecision(2) << t << " seconds!";
-	//wnd.SetTitle(oss.str());
+}
+
+void Game::Exit()
+{
 }
