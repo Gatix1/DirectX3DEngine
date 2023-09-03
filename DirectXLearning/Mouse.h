@@ -15,10 +15,10 @@ public:
 	public:
 		enum class Type
 		{
-			LPress,
-			LRelease,
-			RPress,
-			RRelease,
+			LeftPress,
+			LeftRelease,
+			RightPress,
+			RightRelease,
 			WheelUp,
 			WheelDown,
 			Move,
@@ -56,11 +56,11 @@ public:
 		{
 			return y;
 		}
-		bool LeftIsPressed() const noexcept
+		bool OnLeftPressed() const noexcept
 		{
 			return leftIsPressed;
 		}
-		bool RightIsPressed() const noexcept
+		bool OnRightPressed() const noexcept
 		{
 			return rightIsPressed;
 		}
@@ -76,7 +76,7 @@ public:
 	bool IsInWindow() const noexcept;
 	bool LeftIsPressed() const noexcept;
 	bool RightIsPressed() const noexcept;
-	std::optional<Mouse::Event> Read() noexcept;
+	Mouse::Event Read() noexcept;
 	bool IsEmpty() const noexcept
 	{
 		return buffer.empty();
@@ -90,10 +90,10 @@ private:
 	void OnMouseLeave() noexcept;
 	void OnMouseEnter() noexcept;
 	void OnRawDelta(int dx, int dy) noexcept;
-	void OnLeftPressed(int x, int y) noexcept;
-	void OnLeftReleased(int x, int y) noexcept;
-	void OnRightPressed(int x, int y) noexcept;
-	void OnRightReleased(int x, int y) noexcept;
+	void WIN_OnLeftPressed(int x, int y) noexcept;
+	void WIN_OnLeftReleased(int x, int y) noexcept;
+	void WIN_OnRightPressed(int x, int y) noexcept;
+	void WIN_OnRightReleased(int x, int y) noexcept;
 	void OnWheelUp(int x, int y) noexcept;
 	void OnWheelDown(int x, int y) noexcept;
 	void TrimBuffer() noexcept;

@@ -43,7 +43,7 @@ bool Mouse::RightIsPressed() const noexcept
 	return rightIsPressed;
 }
 
-std::optional<Mouse::Event> Mouse::Read() noexcept
+Mouse::Event Mouse::Read() noexcept
 {
 	if (buffer.size() > 0u)
 	{
@@ -51,7 +51,8 @@ std::optional<Mouse::Event> Mouse::Read() noexcept
 		buffer.pop();
 		return e;
 	}
-	return {};
+	Mouse::Event e = buffer.front();
+	return e;
 }
 
 void Mouse::Flush() noexcept
@@ -103,35 +104,35 @@ void Mouse::OnRawDelta(int dx, int dy) noexcept
 	TrimBuffer();
 }
 
-void Mouse::OnLeftPressed(int x, int y) noexcept
+void Mouse::WIN_OnLeftPressed(int x, int y) noexcept
 {
 	leftIsPressed = true;
 
-	buffer.push(Mouse::Event(Mouse::Event::Type::LPress, *this));
+	buffer.push(Mouse::Event(Mouse::Event::Type::LeftPress, *this));
 	TrimBuffer();
 }
 
-void Mouse::OnLeftReleased(int x, int y) noexcept
+void Mouse::WIN_OnLeftReleased(int x, int y) noexcept
 {
 	leftIsPressed = false;
 
-	buffer.push(Mouse::Event(Mouse::Event::Type::LRelease, *this));
+	buffer.push(Mouse::Event(Mouse::Event::Type::LeftRelease, *this));
 	TrimBuffer();
 }
 
-void Mouse::OnRightPressed(int x, int y) noexcept
+void Mouse::WIN_OnRightPressed(int x, int y) noexcept
 {
 	rightIsPressed = true;
 
-	buffer.push(Mouse::Event(Mouse::Event::Type::RPress, *this));
+	buffer.push(Mouse::Event(Mouse::Event::Type::RightPress, *this));
 	TrimBuffer();
 }
 
-void Mouse::OnRightReleased(int x, int y) noexcept
+void Mouse::WIN_OnRightReleased(int x, int y) noexcept
 {
 	rightIsPressed = false;
 
-	buffer.push(Mouse::Event(Mouse::Event::Type::RRelease, *this));
+	buffer.push(Mouse::Event(Mouse::Event::Type::RightRelease, *this));
 	TrimBuffer();
 }
 

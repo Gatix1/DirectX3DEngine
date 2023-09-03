@@ -42,6 +42,8 @@ HINSTANCE Window::WindowClass::GetInstance() noexcept
 // Window Stuff
 Window::Window(int width, int height, const char* name)
 {
+	this->width = width;
+	this->height = height;
 	// Calculate window size based on desired client region size
 	RECT wr;
 	wr.left = 100;
@@ -135,48 +137,26 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
 	case WM_MOUSEMOVE:
 	{
 		const POINTS pt = MAKEPOINTS(lParam);
-		// in client region -> log move, and log enter + capture mouse (if not previously in window)
 		if (pt.x >= 0 && pt.x < width && pt.y >= 0 && pt.y < height)
-		{
 			mouse.OnMouseMove(pt.x, pt.y);
-			if (!mouse.IsInWindow())
-			{
-				SetCapture(hWnd);
-				mouse.OnMouseEnter();
-			}
-		}
-		// not in client -> log move / maintain capture if button down
-		else
-		{
-			if (wParam & (MK_LBUTTON | MK_RBUTTON))
-			{
-				mouse.OnMouseMove(pt.x, pt.y);
-			}
-			// button up -> release capture / log event for leaving
-			else
-			{
-				ReleaseCapture();
-				mouse.OnMouseLeave();
-			}
-		}
 		break;
 	}
 	case WM_LBUTTONDOWN:
 	{
 		const POINTS pt = MAKEPOINTS(lParam);
-		mouse.OnLeftPressed(pt.x, pt.y);
+		mouse.WIN_OnLeftPressed(pt.x, pt.y);
 		break;
 	}
 	case WM_RBUTTONDOWN:
 	{
 		const POINTS pt = MAKEPOINTS(lParam);
-		mouse.OnRightPressed(pt.x, pt.y);
+		mouse.WIN_OnRightPressed(pt.x, pt.y);
 		break;
 	}
 	case WM_LBUTTONUP:
 	{
 		const POINTS pt = MAKEPOINTS(lParam);
-		mouse.OnLeftReleased(pt.x, pt.y);
+		mouse.WIN_OnLeftReleased(pt.x, pt.y);
 		// release mouse if outside of window
 		if (pt.x < 0 || pt.x >= width || pt.y < 0 || pt.y >= height)
 		{
@@ -188,7 +168,7 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
 	case WM_RBUTTONUP:
 	{
 		const POINTS pt = MAKEPOINTS(lParam);
-		mouse.OnRightReleased(pt.x, pt.y);
+		mouse.WIN_OnRightReleased(pt.x, pt.y);
 		// release mouse if outside of window
 		if (pt.x < 0 || pt.x >= width || pt.y < 0 || pt.y >= height)
 		{

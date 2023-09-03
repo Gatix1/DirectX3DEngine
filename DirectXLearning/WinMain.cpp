@@ -14,11 +14,11 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 			DispatchMessageW(&msg);
 			while (!wnd.mouse.IsEmpty())
 			{
-				const auto e = wnd.mouse.Read().value();
+				const auto e = wnd.mouse.Read();
 				if (e.GetType() == Mouse::Event::Type::Move)
 				{
 					std::ostringstream oss;
-					oss << "Mouse Position: (" << e.GetPosX() << ", " << e.GetPosY();
+					oss << "Mouse Position: (" << e.GetPosX() << ", " << e.GetPosY() << ");";
 					wnd.SetTitle(oss.str());
 				}
 			}
@@ -28,8 +28,8 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 			if (wnd.mouse.LeftIsPressed())
 			{
 				std::ostringstream oss;
-				oss << "Mouse Position: (" << 1 << ", " << ;
-				wnd.SetTitle(oss.str());
+				oss << "Mouse Position: (" << 1 << ", ";
+				//wnd.SetTitle(oss.str());
 			}
 		}
 
