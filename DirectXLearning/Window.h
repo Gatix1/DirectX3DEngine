@@ -40,6 +40,8 @@ private:
 	};
 public:
 	void SetTitle(const std::string &title);
+	void ShowMessageBox(LPCSTR title, LPCSTR content, UINT uType);
+
 	static std::optional<int> ProcessMessages();
 	Window(int width, int height, const char* name);
 	~Window();
@@ -50,7 +52,7 @@ private:
 	static LRESULT CALLBACK HandleMsgThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	LRESULT HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
 public:
-	Keyboard kbd;
+	Keyboard keyboard;
 	Mouse mouse;
 private:
 	int width;

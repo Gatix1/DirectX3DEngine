@@ -134,18 +134,18 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
 		return 0;
 	/*********** KEYBOARD MESSAGES ***********/
 	case WM_KEYDOWN:
-		if (!(lParam & 0x40000000) || kbd.AutorepeatIsEnabled())
-			kbd.OnKeyPressed(wParam);
+		if (!(lParam & 0x40000000) || keyboard.AutorepeatIsEnabled())
+			keyboard.WIN_OnKeyPressed(wParam);
 		break;
 	case WM_SYSKEYDOWN:
-		if (!(lParam & 0x40000000) || kbd.AutorepeatIsEnabled())
-			kbd.OnKeyPressed(wParam);
+		if (!(lParam & 0x40000000) || keyboard.AutorepeatIsEnabled())
+			keyboard.WIN_OnKeyPressed(wParam);
 		break;
 	case WM_SYSKEYUP:
-		kbd.WIN_OnKeyReleased(wParam);
+		keyboard.WIN_OnKeyReleased(wParam);
 		break;
 	case WM_KEYUP:
-		kbd.WIN_OnKeyReleased(wParam);
+		keyboard.WIN_OnKeyReleased(wParam);
 		break;
 	/*********** END KEYBOARD MESSAGES ***********/
 
@@ -202,7 +202,8 @@ LRESULT Window::HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noe
 	}
 	/************** END MOUSE MESSAGES **************/
 	case WM_KILLFOCUS:
-		kbd.ClearState();
+		keyboard.ClearState();
+		mouse.ClearState();
 		break;
 	}
 	return DefWindowProc(hWnd, msg, wParam, lParam);
@@ -252,4 +253,9 @@ HRESULT Window::Exc::GetErrorCode() const noexcept
 std::string Window::Exc::GetErrorString() const noexcept
 {
 	return TranslateErrorCode(hr);
+}
+
+void Window::ShowMessageBox(LPCSTR title, LPCSTR content, UINT uType)
+{
+	MessageBox(hWnd, content, title, uType);
 }

@@ -33,12 +33,12 @@ bool Mouse::IsInWindow() const noexcept
 	return isInWindow;
 }
 
-bool Mouse::LeftIsPressed() const noexcept
+bool Mouse::OnLeftPressed() const noexcept
 {
 	return leftIsPressed;
 }
 
-bool Mouse::RightIsPressed() const noexcept
+bool Mouse::OnRightPressed() const noexcept
 {
 	return rightIsPressed;
 }
@@ -178,4 +178,10 @@ void Mouse::OnWheelDelta(int x, int y, int delta) noexcept
 		wheelDeltaCarry += WHEEL_DELTA;
 		OnWheelDown(x, y);
 	}
+}
+
+void Mouse::ClearState() noexcept
+{
+	leftIsPressed = false;
+	rightIsPressed = false;
 }
