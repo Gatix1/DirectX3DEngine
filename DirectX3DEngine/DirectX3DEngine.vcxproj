@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{12725e23-6a49-4355-bea1-37d0d633889a}</ProjectGuid>
-    <RootNamespace>DirectXLearning</RootNamespace>
+    <RootNamespace>DirectX3DEngine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -156,7 +156,7 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="DirectXLearning.rc" />
+    <ResourceCompile Include="DirectX3DEngine.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon.ico" />
