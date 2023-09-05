@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Microsoft Visual C++.
-// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DirectX3DEngine.rc
+// Включаемый файл, созданный в Microsoft Visual C++.
+// Используется DirectX3DEngine.rc
 //
 #define IDI_ICON1                       101
 

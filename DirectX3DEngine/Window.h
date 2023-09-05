@@ -3,7 +3,9 @@
 #include "Exception.h"
 #include "Keyboard.h"
 #include "Mouse.h"
+#include "Graphics.h"
 #include <optional>
+#include <memory>
 
 #define CHWND_EXCEPT(hr) Window::Exc( __LINE__, __FILE__, hr)
 #define CHWND_LAST_EXCEPT(hr) Window::Exc( __LINE__, __FILE__, GetLastError())
@@ -26,7 +28,7 @@ private:
 	// Singleton manages registration/cleanup of the Window class
 	class WindowClass
 	{
-	public: 
+	public:
 		static const char* GetName() noexcept;
 		static HINSTANCE GetInstance() noexcept;
 	private:
@@ -39,7 +41,7 @@ private:
 		HINSTANCE hInst;
 	};
 public:
-	void SetTitle(const std::string &title);
+	void SetTitle(const std::string& title);
 	void ShowMessageBox(LPCSTR title, LPCSTR content, UINT uType);
 
 	static std::optional<int> ProcessMessages();
@@ -47,6 +49,7 @@ public:
 	~Window();
 	Window(const Window&) = delete;
 	Window& operator = (const Window&) = delete;
+	Graphics& Gfx();
 private:
 	static LRESULT CALLBACK HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPawam);
 	static LRESULT CALLBACK HandleMsgThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -58,4 +61,5 @@ private:
 	int width;
 	int height;
 	HWND hWnd;
+	std::unique_ptr<Graphics> pGfx;
 };

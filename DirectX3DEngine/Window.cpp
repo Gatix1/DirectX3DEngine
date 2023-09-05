@@ -6,6 +6,11 @@
 // Window Class Stuff
 Window::WindowClass Window::WindowClass::wndClass;
 
+Graphics& Window::Gfx()
+{
+	return *pGfx;
+}
+
 Window::WindowClass::WindowClass() noexcept : hInst(GetModuleHandle(nullptr))
 {
 	// Register Window Class
@@ -68,6 +73,8 @@ Window::Window(int width, int height, const char* name)
 		throw CHWND_LAST_EXCEPT();
 	// Show Window
 	ShowWindow(hWnd, SW_SHOWNORMAL);
+	// Create Graphics Object
+	pGfx = std::make_unique<Graphics>(hWnd);
 }
  
 Window::~Window()
