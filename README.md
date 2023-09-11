@@ -11,5 +11,5 @@ Actually i could rewrite godot, as it's open-sourse, but i choice a more interes
 
 - [x] Rendering a basic, empty window;
 - [x] A nice Input system with Keyboard and Mouse support;
-- [x] A exception handler for debugging;
+- [x] An exception handler for debugging
 - [x] A beautiful Game Class, with Update GameLoop, start and exit method;
