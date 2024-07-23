@@ -5,7 +5,9 @@
 ## 💻🎮 About The Project
 
 Hi! This is my pet project, a 3D DirectX Game Engine. I was working on this project a long time ago and did'nt finish it,
-the purpose of it was learning DirectX and studying how game engines work.
+the purpose of it was learning DirectX and studying how game engines work. However it already has input processing,
+update game loop, start and exit game methods, and the error handling implemented, so maybe anyone will consider it useful and
+use it for personal projects.
 
 ## 📓📑 Progress
 
