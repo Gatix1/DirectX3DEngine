@@ -4,8 +4,8 @@
 
 ## 💻🎮 About The Project
 
-Hi! This is my pet project, a 3D DirectX Game Engine. A month ago i started developing a game, but i came to an issue, Godot didn't provide me low-level renderer control, but i needed it.
-Actually i could rewrite godot, as it's open-sourse, but i choice a more interesting way of solving the problem, making my own Game Engine :).
+Hi! This is my pet project, a 3D DirectX Game Engine. I was working on this project a long time ago and did'nt finish it,
+the purpose of it was learning DirectX and studying how game engines work.
 
 ## 📓📑 Progress
 
